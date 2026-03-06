@@ -5,8 +5,6 @@ const axios = require('axios');
 const app = express();
 app.use(express.json());
 
-const PORT = process.env.PORT || 3000;
-
 app.get('/webhook', async (req, res) => {
     try {
         const shopifyUrl = `https://${process.env.SHOPIFY_SHOP_NAME}/admin/api/2024-01/orders.json?status=any&limit=5`;
@@ -42,7 +40,4 @@ app.get('/webhook', async (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`Server backend berjalan di http://localhost:${PORT}`);
-    console.log(`Endpoint Webhook GET siap di http://localhost:${PORT}/webhook`);
-});
+module.exports = app;
